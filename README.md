@@ -71,25 +71,8 @@ Run against a repository:
 
 ## Example Output
 
-    ======================================================================
-    🔒 SECRET SCANNER RESULTS
-    ======================================================================
-
-    ❌ CRITICAL FINDINGS:
-       AWS Access Key found in config.py:42
-       Match: AKIAIOSFODNN7EXAMPLE
-
-       Private SSH Key found in deploy/keys.txt:12
-       Match: -----BEGIN RSA PRIVATE KEY-----
-
-    ⚠️  HIGH FINDINGS:
-       GitHub Token found in scripts/deploy.sh:89
-       Match: ghp_1234567890abcdefghijklmnopqrstuv
-
-    ======================================================================
-    📊 Total secrets found: 3
-       Critical: 2 | High: 1 | Medium: 0
-    ======================================================================
+![Secret Scanner Demo](images/demo1.jpg)
+The scanner identifies secrets by severity and provides exact file locations for quick remediation.
 
 ## Integration with CI/CD
 
