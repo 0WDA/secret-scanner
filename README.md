@@ -1,4 +1,4 @@
-# Secret Scanner 
+# Secret Scanner 🔒
 
 A fast, practical Python tool to detect hardcoded credentials in code repositories before they leak.
 
@@ -19,87 +19,115 @@ A fast, practical Python tool to detect hardcoded credentials in code repositori
 
 ### Option 1: Local Run
 
-```bash
-# Clone the repo
-git clone https://github.com/0WDA/secret-scanner.git
-cd secret-scanner
+Clone the repo:
 
-# Run the scanner
-python3 secret_scanner.py --repo /path/to/your/repo
+    git clone https://github.com/0WDA/secret-scanner.git
+    cd secret-scanner
+
+Run the scanner:
+
+    python3 secret_scanner.py --repo /path/to/your/repo
 
 ### Option 2: Docker
 
-# Build the image
-docker build -t secret-scanner .
+Build the image:
 
-# Run against a repository
-docker run -v /path/to/repo:/scan secret-scanner --repo /scan
+    docker build -t secret-scanner .
 
-Usage Examples
-Basic scan
-python3 secret_scanner.py --repo ./my-project
-Save results as JSON
-python3 secret_scanner.py --repo ./my-project --format json --output report.json
-Scan and exit with error code if secrets found
-python3 secret_scanner.py --repo ./my-project
-if [ $? -ne 0 ]; then
-    echo "Secrets detected! Blocking deployment."
-    exit 1
-fi
-What It Detects
-AWS Access Keys & Secret Keys
-GitHub Personal Access Tokens
-Google API Keys
-Stripe API Keys
-Slack Tokens
-Azure Storage Keys
-Private SSH Keys
-JWT Tokens
-Database Connection Strings
-Generic API Keys & Passwords
-Example Output
-======================================================================
-🔒 SECRET SCANNER RESULTS
-======================================================================
-❌ CRITICAL FINDINGS:
-   AWS Access Key found in config.py:42
-   Match: AKIAIOSFODNN7EXAMPLE
-   Private SSH Key found in deploy/keys.txt:12
-   Match: -----BEGIN RSA PRIVATE KEY-----
-⚠️  HIGH FINDINGS:
-   GitHub Token found in scripts/deploy.sh:89
-   Match: ghp_1234567890abcdefghijklmnopqrstuv
-======================================================================
-📊 Total secrets found: 3
-   Critical: 2 | High: 1 | Medium: 0
-======================================================================
-Integration with CI/CD
+Run against a repository:
+
+    docker run -v /path/to/repo:/scan secret-scanner --repo /scan
+
+## Usage Examples
+
+### Basic scan
+
+    python3 secret_scanner.py --repo ./my-project
+
+### Save results as JSON
+
+    python3 secret_scanner.py --repo ./my-project --format json --output report.json
+
+### Scan and exit with error code if secrets found
+
+    python3 secret_scanner.py --repo ./my-project
+    if [ $? -ne 0 ]; then
+        echo "Secrets detected! Blocking deployment."
+        exit 1
+    fi
+
+## What It Detects
+
+- AWS Access Keys & Secret Keys
+- GitHub Personal Access Tokens
+- Google API Keys
+- Stripe API Keys
+- Slack Tokens
+- Azure Storage Keys
+- Private SSH Keys
+- JWT Tokens
+- Database Connection Strings
+- Generic API Keys & Passwords
+
+## Example Output
+
+    ======================================================================
+    🔒 SECRET SCANNER RESULTS
+    ======================================================================
+
+    ❌ CRITICAL FINDINGS:
+       AWS Access Key found in config.py:42
+       Match: AKIAIOSFODNN7EXAMPLE
+
+       Private SSH Key found in deploy/keys.txt:12
+       Match: -----BEGIN RSA PRIVATE KEY-----
+
+    ⚠️  HIGH FINDINGS:
+       GitHub Token found in scripts/deploy.sh:89
+       Match: ghp_1234567890abcdefghijklmnopqrstuv
+
+    ======================================================================
+    📊 Total secrets found: 3
+       Critical: 2 | High: 1 | Medium: 0
+    ======================================================================
+
+## Integration with CI/CD
+
 Add to your GitHub Actions workflow:
 
-- name: Scan for secrets
-  run: |
-    python3 secret_scanner.py --repo . --format json --output secrets.json
-    if [ -s secrets.json ]; then
-      echo "Secrets detected!"
-      exit 1
-    fi
-Why This Tool?
-Fast: Built for speed. Scans large repos in seconds.
-Practical: Focuses on real, exploitable secrets, not false positives.
-Simple: No complex setup. Just Python 3.11+.
-Extensible: Easy to add custom patterns.
-Roadmap
- HTML report generation with visual charts
- Integration with Slack/Teams for alerts
- Custom pattern configuration file
- Git history scanning (detect secrets in old commits)
- Automatic remediation suggestions
-Contributing
+    - name: Scan for secrets
+      run: |
+        python3 secret_scanner.py --repo . --format json --output secrets.json
+        if [ -s secrets.json ]; then
+          echo "Secrets detected!"
+          exit 1
+        fi
+
+## Why This Tool?
+
+- **Fast:** Built for speed. Scans large repos in seconds.
+- **Practical:** Focuses on real, exploitable secrets, not false positives.
+- **Simple:** No complex setup. Just Python 3.11+.
+- **Extensible:** Easy to add custom patterns.
+
+## Roadmap
+
+- HTML report generation with visual charts
+- Integration with Slack/Teams for alerts
+- Custom pattern configuration file
+- Git history scanning (detect secrets in old commits)
+- Automatic remediation suggestions
+
+## Contributing
+
 Pull requests welcome! Ideas for new secret patterns or features? Open an issue.
 
-License
+## License
+
 MIT License
 
-Author: Alejandro González García-Loygorri
-AppSec Engineer | CRTE • eCPPTv2
-LinkedIn | GitHub
+---
+
+**Author:** Alejandro González García-Loygorri  
+AppSec Engineer | CRTE • eCPPTv2  
+[LinkedIn](https://linkedin.com/in/alejandro-gonzalez-garcia-loygorri) | [GitHub](https://github.com/0WDA)
