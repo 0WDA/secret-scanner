@@ -72,6 +72,7 @@ Run against a repository:
 ## Example Output
 
 ![Secret Scanner Demo](images/demo1.jpg)
+
 The scanner identifies secrets by severity and provides exact file locations for quick remediation.
 
 ## Integration with CI/CD
